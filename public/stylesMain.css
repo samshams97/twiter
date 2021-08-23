@@ -1,0 +1,6 @@
+body {
+  margin: 0;
+}
+.editable:empty:before {
+  content: attr(data-placeholder);
+}
