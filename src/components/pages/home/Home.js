@@ -2,7 +2,7 @@ import { Divider } from '@material-ui/core';
 import React from 'react';
 import Header from '../../header/Header';
 import NewTwit from './components/NewTwit';
-import PostList from './components/PostList';
+import PostList from './components/TweetList';
 import useStyles from './Styles';
 import HomeIcon from '@material-ui/icons/Home';
 

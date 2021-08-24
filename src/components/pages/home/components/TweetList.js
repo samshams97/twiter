@@ -1,11 +1,11 @@
 import React from 'react';
-import Post from './Post';
+import Tweet from './Tweet';
 
-export default function PostList({ data }) {
+export default function TweetList({ data }) {
   return (
     <div>
       {data.map((post) => (
-        <Post data={post} />
+        <Tweet data={post} />
       ))}
     </div>
   );

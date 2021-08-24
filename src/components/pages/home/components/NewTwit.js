@@ -10,11 +10,7 @@ export default function NewTwit() {
     <div className={classes.newTwit}>
       <Grid container>
         <img src={'images/user.png'} />
-        <div
-          data-placeholder={'Write'}
-          contentEditable
-          className={classnames(classes.inputTwit, 'editable')}
-        />
+        <textarea placeholder="write" className={classes.inputTwit} />
       </Grid>
       <Grid alignItems="center" container direction="row-reverse">
         <Button

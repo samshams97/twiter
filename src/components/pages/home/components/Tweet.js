@@ -4,7 +4,7 @@ import { Grid, IconButton, Typography } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 
-export default function Post({ data }) {
+export default function Tweet({ data }) {
   const renderTwit = (text) => {
     return {
       __html: text.replace(/#\S+/g, '<a href=/tags/$& style=color:blue>$&</a>'),
