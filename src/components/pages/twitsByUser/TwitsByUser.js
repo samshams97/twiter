@@ -2,14 +2,14 @@ import React from 'react';
 import { Divider } from '@material-ui/core';
 import useStyles from '../home/Styles';
 import Header from '../../header/Header';
-import PostList from '../home/components/PostList';
+import TweetList from '../home/components/TweetList';
 import PersonIcon from '@material-ui/icons/Person';
 const twitPost = [
   {
     sender: {
       name: 'Messi',
       id: '@Leo Messi',
-      img: 'images/lms.png',
+      img: '/images/lms.png',
     },
     text: '#Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
   },
@@ -17,7 +17,7 @@ const twitPost = [
     sender: {
       name: 'facebook',
       id: '@FaceBook',
-      img: 'images/facebook.png',
+      img: '/images/facebook.png',
     },
     text: '#Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
   },
@@ -25,7 +25,7 @@ const twitPost = [
     sender: {
       name: 'playStation',
       id: '@Sonny',
-      img: 'images/sonny.png',
+      img: '/images/sonny.png',
     },
     text: '#Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
   },
@@ -33,7 +33,7 @@ const twitPost = [
     sender: {
       name: 'xbox',
       id: '@Microsoft',
-      img: 'images/xbox.png',
+      img: '/images/xbox.png',
     },
     text: '#Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
   },
@@ -41,20 +41,20 @@ const twitPost = [
     sender: {
       name: 'telegram',
       id: '@Telegram',
-      img: 'images/telegram.png',
+      img: '/images/telegram.png',
     },
     text: '#Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
   },
 ];
 
-function TwitsByUser() {
+function TwitsByUser(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Header title={'samsHams for now'} icon={<PersonIcon />} />
+      <Header title={props.match.params.user} icon={<PersonIcon />} />
       <Divider className={classes.divider} />
-      <PostList data={twitPost} />
+      <TweetList data={twitPost} />
     </div>
   );
 }

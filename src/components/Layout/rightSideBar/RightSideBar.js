@@ -1,6 +1,7 @@
 import { Divider, Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import useStyles from './Styles';
+import { Link } from 'react-router-dom';
 
 const hashList = [
   { name: 'Facebook', id: '@Facebook', img: 'images/facebook.png' },
@@ -16,25 +17,31 @@ export default function RightSideBar() {
   return (
     <div className={classes.root}>
       <Typography className={classes.headStyle}>
-        The most famous on twitter you may follow
+        The most famous on twitter
       </Typography>
       <Divider />
       <div className={classes.hashtagList}>
         {hashList.map((items) => (
-          <Grid className={classes.hashtagList} container direction={'column'}>
-            <Grid container direction={'row'} alignItems="center">
-              <img src={items.img} className={classes.imgStyle} />
-              <Grid item direction={'column'}>
-                <Typography className={classes.hashtag}>
-                  {items.name}
-                </Typography>
-                <Typography className={classes.hashtag}>
-                  {' '}
-                  {items.id}{' '}
-                </Typography>
+          <Link to={'/users/' + items.name}>
+            <Grid
+              className={classes.hashtagList}
+              container
+              direction={'column'}
+            >
+              <Grid container direction={'row'} alignItems="center">
+                <img src={items.img} className={classes.imgStyle} />
+                <Grid item direction={'column'}>
+                  <Typography className={classes.hashtag}>
+                    {items.name}
+                  </Typography>
+                  <Typography className={classes.hashtag}>
+                    {' '}
+                    {items.id}{' '}
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
+          </Link>
         ))}
       </div>
     </div>

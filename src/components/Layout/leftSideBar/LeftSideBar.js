@@ -1,6 +1,7 @@
 import React from 'react';
 import useStyles from './Styles';
 import { ButtonBase, Grid, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const theNewestHashtag = [
   'mbape-madrid',
@@ -15,24 +16,30 @@ export default function LeftSideBar() {
 
   return (
     <div className={classes.root}>
-      <Grid container direction={'row'} alignItems={'center'}>
-        <img src={'images/new.png'} alt="twitter pic" />
-        <Typography className={classes.headStyle}>twitter</Typography>
-      </Grid>
+      <Link to={'/'} style={{ textDecoration: 'none' }}>
+        <Grid container direction={'row'} alignItems={'center'}>
+          <img src={'/images/new.png'} alt="twitter pic" />
+          <Typography className={classes.headStyle}>twitter</Typography>
+        </Grid>
+      </Link>
       <Typography className={classes.hashtag}>the newest HaShtags</Typography>
-
       <Grid container direction={'column'}>
         {theNewestHashtag.map((items) => (
           <ButtonBase>
-            <Grid
-              className={classes.gridHashtag}
-              container
-              direction={'row'}
-              alignItems={'center'}
+            <Link
+              to={'/hashtags/' + items}
+              style={{ textDecoration: 'unset', width: '100%' }}
             >
-              <img src={'/images/hashtagg.png'} alt="" />
-              <Typography>{items}</Typography>
-            </Grid>
+              <Grid
+                className={classes.gridHashtag}
+                container
+                direction={'row'}
+                alignItems={'center'}
+              >
+                <img src={'/images/hashtagg.png'} alt="" />
+                <Typography>{items}</Typography>
+              </Grid>
+            </Link>
           </ButtonBase>
         ))}
       </Grid>
