@@ -4,8 +4,10 @@ import useStyles from '../home/Styles';
 import Header from '../../header/Header';
 import TweetList from '../home/components/TweetList';
 import PersonIcon from '@material-ui/icons/Person';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 const twitPost = [
-  {
+  /* {
     sender: {
       name: 'Messi',
       id: '@Leo Messi',
@@ -44,17 +46,27 @@ const twitPost = [
       img: '/images/telegram.png',
     },
     text: '#Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-  },
+  },*/
 ];
 
 function TwitsByUser(props) {
   const classes = useStyles();
+  const [tweetPost, setTweetPost] = useState([]);
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/tweets')
+      .then((response) => {
+        const data = response.data;
+        setTweetPost(data);
+      })
+      .catch((error) => {});
+  }, []);
 
   return (
     <div className={classes.root}>
       <Header title={props.match.params.user} icon={<PersonIcon />} />
       <Divider className={classes.divider} />
-      <TweetList data={twitPost} />
+      <TweetList data={tweetPost} />
     </div>
   );
 }

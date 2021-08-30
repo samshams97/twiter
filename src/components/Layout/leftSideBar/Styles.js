@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   root: {
-    width: '18%',
+    width: '19%',
     backgroundColor: 'white',
   },
   headStyle: {

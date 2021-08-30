@@ -1,19 +1,21 @@
 import { Divider, Grid, Typography } from '@material-ui/core';
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import useStyles from './Styles';
 import { Link } from 'react-router-dom';
-
-const hashList = [
-  { name: 'Facebook', id: '@Facebook', img: 'images/facebook.png' },
-  { name: 'Messi', id: '@Leo Messi', img: 'images/lms.png' },
-  { name: 'Ronaldo', id: '@Cristiano', img: 'images/ronaldo.png' },
-  { name: 'playstation', id: '@Sony', img: 'images/sonny.png' },
-  { name: 'Xbox', id: '@Microsoft', img: 'images/xbox.png' },
-  { name: 'Telegram', id: '@Telegram', img: 'images/telegram.png' },
-];
+import axios from 'axios';
 
 export default function RightSideBar() {
+  const [hashList, setHashList] = useState([]);
   const classes = useStyles();
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/users')
+      .then((response) => {
+        const data = response.data;
+        setHashList(data);
+      })
+      .catch((error) => {});
+  }, []);
   return (
     <div className={classes.root}>
       <Typography className={classes.headStyle}>

@@ -2,17 +2,21 @@ import React from 'react';
 import useStyles from './Styles';
 import { ButtonBase, Grid, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const theNewestHashtag = [
-  'mbape-madrid',
-  'corona_virus',
-  'betrayed_laporta',
-  'React_features',
-  'kane_city',
-  'yazdani_taylor',
-];
 export default function LeftSideBar() {
+  const [newHashtags, setNewHashTags] = useState([]);
   const classes = useStyles();
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/hashTags')
+      .then((response) => {
+        const data = response.data;
+        setNewHashTags(data);
+      })
+      .catch((error) => {});
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -24,7 +28,7 @@ export default function LeftSideBar() {
       </Link>
       <Typography className={classes.hashtag}>the newest HaShtags</Typography>
       <Grid container direction={'column'}>
-        {theNewestHashtag.map((items) => (
+        {newHashtags.map((items) => (
           <ButtonBase>
             <Link
               to={'/hashtags/' + items}
