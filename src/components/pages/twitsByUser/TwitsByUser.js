@@ -6,6 +6,7 @@ import TweetList from '../home/components/TweetList';
 import PersonIcon from '@material-ui/icons/Person';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getAllApis } from '../../../api/api-tweet';
 const twitPost = [
   /* {
     sender: {
@@ -53,13 +54,10 @@ function TwitsByUser(props) {
   const classes = useStyles();
   const [tweetPost, setTweetPost] = useState([]);
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/tweets')
-      .then((response) => {
-        const data = response.data;
-        setTweetPost(data);
-      })
-      .catch((error) => {});
+    getAllApis((isOk, dataOrError) => {
+      if (!isOk) return alert(dataOrError.message);
+      else setTweetPost(dataOrError);
+    });
   }, []);
 
   return (

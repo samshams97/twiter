@@ -3,18 +3,16 @@ import { React, useEffect, useState } from 'react';
 import useStyles from './Styles';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { getAllUsers } from '../../../api/api-tweet';
 
 export default function RightSideBar() {
   const [hashList, setHashList] = useState([]);
   const classes = useStyles();
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/users')
-      .then((response) => {
-        const data = response.data;
-        setHashList(data);
-      })
-      .catch((error) => {});
+    getAllUsers((isOk, dataOrError) => {
+      if (!isOk) return alert(dataOrError.message);
+      else setHashList(dataOrError);
+    });
   }, []);
   return (
     <div className={classes.root}>

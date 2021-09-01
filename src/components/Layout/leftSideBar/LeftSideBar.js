@@ -4,18 +4,16 @@ import { ButtonBase, Grid, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { getAllHashTags } from '../../../api/api-tweet';
 
 export default function LeftSideBar() {
   const [newHashtags, setNewHashTags] = useState([]);
   const classes = useStyles();
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/hashTags')
-      .then((response) => {
-        const data = response.data;
-        setNewHashTags(data);
-      })
-      .catch((error) => {});
+    getAllHashTags((isOk, dataOrError) => {
+      if (!isOk) return alert(dataOrError.message);
+      else setNewHashTags(dataOrError);
+    });
   }, []);
 
   return (

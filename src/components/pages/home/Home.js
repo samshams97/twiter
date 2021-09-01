@@ -7,22 +7,17 @@ import useStyles from './Styles';
 import HomeIcon from '@material-ui/icons/Home';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { getAllApis } from '../../../api/api-tweet';
 
 export default function Home() {
   const [twitPost, setTwitPost] = useState([]);
   const classes = useStyles();
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/tweets')
-      .then((response) => {
-        const data = response.data;
-        setTwitPost(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getAllApis((isOk, dataOrError) => {
+      if (!isOk) return alert(dataOrError.message);
+      else setTwitPost(dataOrError);
+    });
   }, []);
-
   return (
     <div className={classes.root}>
       <Header title={'Home'} icon={<HomeIcon />} />

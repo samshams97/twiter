@@ -5,18 +5,16 @@ import Header from '../../header/Header';
 import TweetList from '../home/components/TweetList';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getAllApis } from '../../../api/api-tweet';
 
 function TwitHashtags(props) {
   const classes = useStyles();
   const [hashTags, setHashTags] = useState([]);
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/tweets')
-      .then((response) => {
-        const data = response.data;
-        setHashTags(data);
-      })
-      .catch((error) => {});
+    getAllApis((isOk, dataOrError) => {
+      if (!isOk) return alert(dataOrError.message);
+      else setHashTags(dataOrError);
+    });
   }, []);
 
   return (
